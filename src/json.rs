@@ -1,7 +1,7 @@
 #[derive(Debug)]
-pub enum JasonValue {
-    Object(Vec<(String, JasonValue)>),
-    Array(Vec<JasonValue>),
+pub enum JsonValue {
+    Object(Vec<(String, JsonValue)>),
+    Array(Vec<JsonValue>),
     String(String),
     Bool(bool),
     Number(f64),
