@@ -1,28 +1,9 @@
 use ::std::fs;
 use ::std::process::exit;
 use std::env::args;
+mod lexer;
 
-fn lex(input: &str) -> Result<(), &'static str> {
-    let mut chars = input.chars().filter(|c| !c.is_whitespace());
-    // Expect the first character to be `{`
-    match chars.next() {
-        Some('{') => {}
-        _ => return Err("Invalid: Expected '{'"),
-    }
-
-    // Expect the next character to be `}`
-    match chars.next() {
-        Some('}') => {}
-        _ => return Err("Invalid: Expected '}'"),
-    }
-
-    // Ensure no more characters are left
-    if chars.next().is_some() {
-        return Err("Invalid: Extra characters found");
-    }
-
-    Ok(())
-}
+use lexer::lex;
 
 fn main() {
     // get the environment variable
