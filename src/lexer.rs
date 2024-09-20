@@ -14,12 +14,12 @@ pub fn lex(input: &str) -> Result<(), &'static str> {
                 // Move over the string of the Key
                 while let Some(c) = chars.next() {
                     if c == '"' {
-                        break; // End of key
+                        break;
                     }
                 }
             }
             Some('}') => {
-                break; // End of object
+                break;
             }
             _ => return Err("Invalid: Expected '\"' at the start of key or '}'"),
         }
@@ -36,7 +36,7 @@ pub fn lex(input: &str) -> Result<(), &'static str> {
                 // Parse string value
                 while let Some(c) = chars.next() {
                     if c == '"' {
-                        break; // End of value
+                        break;
                     }
                 }
             }
@@ -82,6 +82,22 @@ pub fn lex(input: &str) -> Result<(), &'static str> {
                     }
                 }
             }
+
+            Some('{') => {
+                // Parse an object
+                let remaining_input: String = chars.clone().collect();
+                lex(&remaining_input)?;
+            }
+            Some('[') => {
+                // Parse an array
+                while let Some(c) = chars.next() {
+                    match c {
+                        ']' => break,
+                        _ => continue,
+                    }
+                }
+            }
+
             _ => return Err("Invalid: Expected a string, boolean, null, or number"),
         }
 
@@ -100,4 +116,3 @@ pub fn lex(input: &str) -> Result<(), &'static str> {
 
     Ok(())
 }
-
