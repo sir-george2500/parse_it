@@ -29,7 +29,7 @@ fn main() {
     // Try to lex and parse the input
     match lex(&content) {
         Ok(_) => {
-            println!("Valid JSON: {}.", content);
+            println!("Valid JSON: \n {}.", content);
             exit(0);
         }
         Err(e) => {
