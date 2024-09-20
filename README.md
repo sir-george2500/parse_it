@@ -1,4 +1,5 @@
 # JSON Parser in Rust - `parse_it`
+![Parse_it](https://github.com/sir-george2500/custome_images/blob/main/images/parse_it.png)
 
 Welcome to **parse_it**, a simple JSON parser that can handle string keys and values, as well as nested objects and arrays. This parser reads JSON data from a file or standard input, validating its structure with the precision of a Swiss watchmaker. 
 
